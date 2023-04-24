@@ -1,0 +1,12 @@
+{
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "extends": [
+      "plugin:react/recommended"
+    ],
+    "rules": {   
+      "eslint.validate": [ "javascript", "javascriptreact",  "typescriptreact" ],
+      "react/jsx-uses-react": "error"
+   }
+}
