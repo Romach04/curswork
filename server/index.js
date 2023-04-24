@@ -6,10 +6,10 @@ const models = require('./models/models')
 const cors = require('cors');
 const app = express();
 
-
+const router = require('./routers/index')
 app.use(cors());
 app.use(express.json())
-
+app.use('/api', router)
 
 
 const start = async () => {
