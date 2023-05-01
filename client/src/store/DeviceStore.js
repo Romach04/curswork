@@ -10,14 +10,14 @@ export default class DeviceStore {
             
         this._brands = [
             {id: 1, name : 'Samsung'},
-            {id: 2, name : 'Apple'}
+            {id: 2, name : 'Apple'},
+            {id: 3, name : 'Apple'},
         ]
         
         this._devices = [
-            {id:1, name: 'Iphone', price: 25000, rating: 5 , img: 'C:/Users/Роман/Desktop/img/foto_large.jpg' },
-            {id:2, name: 'Iphone 2', price: 25000, rating: 5 , img: 'C:/Users/Роман/Desktop/img/foto_large.jpg' },
-            {id:3, name: 'Iphone 3 ', price: 25000, rating: 5 , img: 'C:/Users/Роман/Desktop/img/foto_large.jpg' },
-            {id:4, name: 'Iphone 4', price: 25000, rating: 5 , img: 'C:/Users/Роман/Desktop/img/foto_large.jpg' }
+            {id:1, name: 'Iphone', price: 25000, rating: 5 , img: 'https://cache3.youla.io/files/images/780_780/5a/d7/5ad7cde185e9d22b4a602862.jpg' },
+            {id:2, name: 'Iphone 2', price: 25000, rating: 5 , img: 'https://cache3.youla.io/files/images/780_780/5a/d7/5ad7cde185e9d22b4a602862.jpg' },
+            {id:3, name: 'Iphone 3 ', price: 25000, rating: 5 , img: 'https://cache3.youla.io/files/images/780_780/5a/d7/5ad7cde185e9d22b4a602862.jpg' },
         ]
         this._selectedType = {}
         this._selectedBrand = {}
