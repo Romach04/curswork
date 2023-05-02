@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Container, Col, Image, Form, Row, Card, Button} from 'react-bootstrap';
 import starBig from '../assets/img/starBig.png';
+import { useParams } from "react-router-dom";
+import { fechOneDevice } from "../components/http/deviceApi";
 const DevicePage = () => {
-    const device = {id:1, name: 'Iphone', price: 25000, rating: 5 , img: 'https://cache3.youla.io/files/images/780_780/5a/d7/5ad7cde185e9d22b4a602862.jpg' };
-    const description = [
-        {id: 1, title: 'Оперативная память', description: '3 гб'},
-        {id: 2, title: 'Оперативная память', description: '3 гб'},
-        {id: 3, title: 'Оперативная память', description: '3 гб'},
-        {id: 4, title: 'Оперативная память', description: '3 гб'},
-        {id: 5, title: 'Оперативная память', description: '3 гб'},
-    ]
+    const [device, setDevice] = useState({info: []})
+    const {id} = useParams()
+
+    useEffect(() => {
+        fechOneDevice(id).then(data => setDevice(data))
+    }, [])
+
     return (
         <Container className="mt-5">
             <Row>
                 <Col md={4}>
-                    <Image width={300} height={300} src={device.img}/>
+                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}/>
                 </Col>
                 <Col md={4}>
                     <Form className="d-flex flex-column aling-items-center">
@@ -42,7 +43,7 @@ const DevicePage = () => {
             </Row>
             <Row className="d-flex flex-column mt-5">
                 <h1>Характеристки</h1>
-                {description.map((info, index) =>
+                {device.info.map((info, index) =>
                     <Row key={info.id} style={{background: index % 2 === 0 ? 'Lightgray' : 'transparent', 
                     padding: 10}}>
                         {info.title} : {info.description}
