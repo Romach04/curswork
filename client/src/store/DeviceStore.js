@@ -6,15 +6,11 @@ export default class DeviceStore {
             
         this._brands = []
         
-        this._devices = [
-            // {id:1, name: 'Iphone', price: 25000, rating: 5 , img: 'https://cache3.youla.io/files/images/780_780/5a/d7/5ad7cde185e9d22b4a602862.jpg' },
-            // {id:2, name: 'Iphone 2', price: 25000, rating: 5 , img: 'https://cache3.youla.io/files/images/780_780/5a/d7/5ad7cde185e9d22b4a602862.jpg' },
-            // {id:3, name: 'Iphone 3 ', price: 25000, rating: 5 , img: 'https://cache3.youla.io/files/images/780_780/5a/d7/5ad7cde185e9d22b4a602862.jpg' },
-        ]
+        this._devices = []
         this._selectedType = {}
         this._selectedBrand = {}
         this._page = 1
-        this._totalCount = 0
+        this._totalCount = 10
         this._limit = 3
         makeAutoObservable(this)
     }
