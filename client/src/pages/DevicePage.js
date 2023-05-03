@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {Container, Col, Image, Form, Row, Card, Button} from 'react-bootstrap';
 import starBig from '../assets/img/starBig.png';
 import { useParams } from "react-router-dom";
 import { fechOneDevice } from "../components/http/deviceApi";
+import {Context} from '../index'
 const DevicePage = () => {
     const [device, setDevice] = useState({info: []})
     const {id} = useParams()
+    const {devices} = useContext(Context)
+
 
     useEffect(() => {
         fechOneDevice(id).then(data => setDevice(data))
@@ -36,7 +39,10 @@ const DevicePage = () => {
                         style={{width: 300, height:300, fontSize: 30}}
                     >  
                         <h3>{device.price} р.</h3>
-                        <Button variant="info">Добавить в корзину</Button>
+                        <Button 
+                        // onClick={device => devices.setBasket([...device])}
+                        variant="info"
+                        >Добавить в корзину</Button>
                     </Card>
                 </Col>
 
