@@ -5,6 +5,7 @@ import { createDevice,fechBrand, fechTypes, fechDevice } from '../http/deviceApi
 import { observer } from "mobx-react-lite";
 const CreateDevice = observer(({show, onHide}) => {
   const {devices} = useContext(Context)
+  const [rating, setRating] = useState('');
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [file, setFile] = useState(null)
@@ -33,6 +34,7 @@ const CreateDevice = observer(({show, onHide}) => {
       const formData = new FormData()
       formData.append('name', name)
       formData.append('price', `${price}`)
+      formData.append('rating', rating)
       formData.append('img', file)
       formData.append('brandId', devices.selectedBrand.id)
       formData.append('typeId', devices.selectedType.id)
@@ -91,6 +93,12 @@ const CreateDevice = observer(({show, onHide}) => {
                       className="mt-3"
                       placeholder="Введите стоимость устройства"
                       type="number"
+                  />
+                  <Form.Control
+                      value={rating}
+                      onChange={e => setRating(e.target.value)}
+                      className="mt-3"
+                      placeholder="Введите рейтинг"
                   />
                   <Form.Control
                       className="mt-3"
