@@ -2,20 +2,27 @@ import React, { useEffect, useState, useContext } from "react";
 import {Container, Col, Image, Form, Row, Card, Button} from 'react-bootstrap';
 import starBig from '../assets/img/starBig.png';
 import { useParams } from "react-router-dom";
-import { fechOneDevice } from "../components/http/deviceApi";
+import { fechOneDevice, addBasket } from "../components/http/deviceApi";
 import {Context} from '../index'
+import '../App.css'
 const DevicePage = () => {
     const [device, setDevice] = useState({info: []})
     const {id} = useParams()
     const {devices} = useContext(Context)
 
-
     useEffect(() => {
         fechOneDevice(id).then(data => setDevice(data))
     }, [])
 
+
+     const add = () => {
+        const formData = new FormData()
+        formData.append('deviceId', id)
+        addBasket(formData).then(response => alert(`Товар ` + device.name + ` был добавлен в вашу корзину!`))
+    }
+
     return (
-        <Container className="mt-5">
+        <Container className="mt-5 font-roboto">
             <Row>
                 <Col md={4}>
                     <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}/>
@@ -40,7 +47,7 @@ const DevicePage = () => {
                     >  
                         <h3>{device.price} р.</h3>
                         <Button 
-                        // onClick={device => devices.setBasket([...device])}
+                        onClick={add}
                         variant="info"
                         >Добавить в корзину</Button>
                     </Card>

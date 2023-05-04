@@ -38,3 +38,27 @@ export const fechOneDevice = async (id) => {
     return data;
 
 }
+
+
+export const fechDeviceBasket = async (id) => {
+    const {data} = await $host.get('api/device/' + id)
+    return data;
+
+}
+
+
+
+
+
+
+
+
+
+export const addBasket = async (deviceId) => {
+    const {responce} = await $authHost.post('api/basket', deviceId)
+    return responce
+}
+export const getBasket = async () => {
+    const {data} = await $authHost.get('api/basket')
+    return data
+}

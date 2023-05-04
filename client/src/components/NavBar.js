@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from '..';
+
+import {Image} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -8,6 +10,7 @@ import { NavLink } from 'react-router-dom';
 import { ADMIN_ROUTER, BASKET_ROUTER, LOGIN_ROUTER, SHOP_ROUTER } from '../utils/const';
 import {observer} from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/img/blackLogo.jpg'
 const NavBar = observer(() => {
     const navigate = useNavigate();
     const {user} = useContext(Context);
@@ -17,9 +20,12 @@ const NavBar = observer(() => {
         user.setUser({})
     }
     return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar style={{fontFamily:  'Roboto , sans-serif'}} bg="dark" variant="dark">
         <Container>
           <NavLink style={{color:'white'}} to={SHOP_ROUTER}>Электрон</NavLink>
+          <Image  width={30} height={30} className='me-auto ms-2' src={logo}/>
+
+          
             {user.isAuth ?
                 <Nav className="ml-auto" style={{color:'white'}}>
                     <Button
