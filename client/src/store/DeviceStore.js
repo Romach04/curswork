@@ -5,7 +5,7 @@ export default class DeviceStore {
         this._types = []
             
         this._brands = []
-        this._basket = []
+        this._baskets = []
         this._devices = []
         this._selectedType = {}
         this._selectedBrand = {}

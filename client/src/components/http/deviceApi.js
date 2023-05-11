@@ -51,14 +51,12 @@ export const fechDeviceBasket = async (id) => {
 
 
 
-
-
-
-export const addBasket = async (deviceId) => {
-    const {responce} = await $authHost.post('api/basket', deviceId)
-    return responce
+export const addToBasket = async (deviceId) => {
+    const {response} = await $authHost.post('api/basket', deviceId)
+    return response
 }
+
 export const getBasket = async () => {
     const {data} = await $authHost.get('api/basket')
     return data
-}
+}    

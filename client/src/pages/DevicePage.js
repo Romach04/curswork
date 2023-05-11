@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import {Container, Col, Image, Form, Row, Card, Button} from 'react-bootstrap';
 import starBig from '../assets/img/starBig.png';
 import { useParams } from "react-router-dom";
-import { fechOneDevice, addBasket } from "../components/http/deviceApi";
+import { fechOneDevice, addToBasket } from "../components/http/deviceApi";
 import {Context} from '../index'
 import '../App.css'
 const DevicePage = () => {
@@ -15,10 +15,10 @@ const DevicePage = () => {
     }, [])
 
 
-     const add = () => {
+    const add = () => {
         const formData = new FormData()
         formData.append('deviceId', id)
-        addBasket(formData).then(response => alert(`Товар ` + device.name + ` был добавлен в вашу корзину!`))
+        addToBasket(formData).then(response => alert(`Товар ` + device.name + ` был добавлен в вашу корзину!`))
     }
 
     return (

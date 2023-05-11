@@ -19,7 +19,7 @@ module.exports = function (role) {
             next()
             
         } catch (e) {
-            res.status(401).json({message: "Не авторизованый пользователь e"})
+            res.status(401).json({message: "Ошибка доступа"})
         }
     }
     
