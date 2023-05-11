@@ -1,5 +1,5 @@
 const { Device, BasketDevice, Basket } = require("../models/models")
-
+var pg = require('pg');
 class BasketController {
 
     async addToBasket(req,res,next){
@@ -18,10 +18,17 @@ class BasketController {
         return res.json(basket)
     }
 
-    // async deleteItemBasket(req,res){
-    //     const {id} = req.user
-    //     const basket = await
-    // }
+    async deleteItemBasket(req,res){
+        const {id} = req.body
+        // const basket = await BasketDevice.destroy({ where: {basketId: id}})
+        const basket = await BasketDevice.destroy({include: {
+            model: Device
+        }, where: {id: id}})
+
+        return res.json(basket)
+
+        
+    }
 
 }
 

@@ -1,8 +1,8 @@
 /* eslint-disable no-lone-blocks */
 import React, { useEffect } from 'react';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '..';
-import { getBasket } from '../components/http/deviceApi'
+import { getBasket, deleteItemBasket } from '../components/http/deviceApi'
 
 import { Card, Col, Container, Row, Image, Button } from 'react-bootstrap'
 import { observer } from 'mobx-react-lite';
@@ -10,12 +10,27 @@ import '../App.css'
 
 
 const Basket = observer(() => {
+    const [basketId, setBasketId] = useState(null);
     const {devices} = useContext(Context)
 
     useEffect(() => {
         getBasket().then(data => devices.setBaskets(data))
     }, [])
 
+    // useEffect(() => {
+    //     async function deleteItem() {
+    //          deleteItemBasket(basketId)
+    //         .then(data => devices.setBaskets(data)
+    //         .then(console.log('ok'))
+    //         .catch((e) => {e.message()}))
+    //     }
+    //     if(basketId){
+    //         console.log('pp')
+    //         deleteItem()
+            
+    //     }
+        
+    // }, [basketId])
 
 
     // ----- Считаем общую сумму, которую юзер набрал в корзину ------- //
@@ -27,17 +42,23 @@ const Basket = observer(() => {
 
     const removeItem = (id) => {
         const arr = devices.basket;
-        let i = arr.length
-        if(i) {
-            while(--i) {
-                let cur = arr[i];
-                if(cur.id === id){
-                    arr.splice(i, 1);
-                }
-            }
-        }
+        removeObjectWithId(arr, id)
+
         
     }
+
+     function removeObjectWithId(arr, id) {
+        const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
+      
+        if (objWithIdIndex > -1) {
+          arr.splice(objWithIdIndex, 1);
+        }
+        
+        
+        return arr;
+
+        
+      }
     
 
 
@@ -52,10 +73,11 @@ const Basket = observer(() => {
                 <h2 className="pl-2">{`${prices} ₽`}</h2>
             </div>
 
-
+            {!devices.basket ? 'Ничего нету': ''}
 
             {devices.basket.map(product =>
-                <Card className="d-flex w-100 p-2 justify-content-center mb-4" style={{cursor: 'pointer'}} id={product.id} key={product.id} onClick={()=>{removeItem(product.id)}}>
+                
+                <Card className="d-flex w-100 p-2 justify-content-center mb-4" style={{cursor: 'pointer'}} id={product.id} key={product.id} >
                     <Row className="d-flex w-100">
                         <Col>
                             <div className="d-flex flex-row align-items-center">
@@ -66,7 +88,7 @@ const Basket = observer(() => {
                         </Col>
                         <Col>
                             <div className='d-flex align-items-center justify-content-center' style={{height:'100%'}}>
-                                <Button variant='outline-danger' className='ms-5'>Удалить товар</Button>
+                                <Button variant='outline-danger' className='ms-5' onClick={()=>{removeItem(product.id)}} >Удалить товар</Button>
                             </div>
                             
                         </Col>
@@ -78,6 +100,7 @@ const Basket = observer(() => {
                     </Row>
 
                 </Card>
+                
             )}
         </Container>
     );

@@ -11,7 +11,7 @@ const TypeBar = observer(() => {
             {devices.types.map(type =>
                 <ListGroup.Item
                     className='font-roboto'
-                    style={{cursor: 'pointer'}}
+                    style={{cursor: 'pointer', backgroundColor: type.id === devices.selectedType.id ? '' : 'rgb(232 235 245)', transition: 'all 0.25s ease-out'}}
                     active={type.id === devices.selectedType.id}
                     onClick={() => devices.setSelectedType(type)}
                     key={type.id}
