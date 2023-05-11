@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { Context } from '..';
 import { getBasket } from '../components/http/deviceApi'
 
-import { Card, Col, Container, Row, Image } from 'react-bootstrap'
+import { Card, Col, Container, Row, Image, Button } from 'react-bootstrap'
 import { observer } from 'mobx-react-lite';
 import '../App.css'
 
@@ -24,6 +24,23 @@ const Basket = observer(() => {
     {devices.basket.map(price =>
         prices += Number(price.device.price)
     )}
+
+    const removeItem = (id) => {
+        const arr = devices.basket;
+        let i = arr.length
+        if(i) {
+            while(--i) {
+                let cur = arr[i];
+                if(cur.id === id){
+                    arr.splice(i, 1);
+                }
+            }
+        }
+        
+    }
+    
+
+
     return (
         <Container
             className="d-flex flex-sm-column justify-content-center align-items-center mt-3 font-roboto"
@@ -38,13 +55,20 @@ const Basket = observer(() => {
 
 
             {devices.basket.map(product =>
-                <Card className="d-flex w-100 p-2 justify-content-center mb-4" key={product.id}>
+                <Card className="d-flex w-100 p-2 justify-content-center mb-4" style={{cursor: 'pointer'}} id={product.id} key={product.id} onClick={()=>{removeItem(product.id)}}>
                     <Row className="d-flex w-100">
                         <Col>
                             <div className="d-flex flex-row align-items-center">
                                 <Image src={process.env.REACT_APP_API_URL + product.device.img} width={50} />
                                 <h1 className="pl-3">{product.device.name}</h1>
+                                
                             </div>
+                        </Col>
+                        <Col>
+                            <div className='d-flex align-items-center justify-content-center' style={{height:'100%'}}>
+                                <Button variant='outline-danger' className='ms-5'>Удалить товар</Button>
+                            </div>
+                            
                         </Col>
                         <Col>
                             <div className="d-flex h-100 flex-row justify-content-end align-items-center">
