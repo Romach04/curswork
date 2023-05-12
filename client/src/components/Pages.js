@@ -5,6 +5,7 @@ import { Pagination } from 'react-bootstrap';
 import '../App.css'
 const Pages = observer( () => {
     const {devices} = useContext(Context)
+    
     const pagesCount = Math.ceil(devices.totalCount / devices.limit)
     const pages = []
 
@@ -12,7 +13,8 @@ const Pages = observer( () => {
         pages.push( i + 1 )
     }
     return (
-            <div style={{marginTop: '150px', marginLeft: '25px'}}>
+        <div className='' style={{position: 'relative'}} >
+            <div style={{position: 'absolute', top: '280px', left: '24px'}}>
                 <Pagination>
                     {pages.map(page => 
                 <Pagination.Item
@@ -24,6 +26,7 @@ const Pages = observer( () => {
                 )}
                 </Pagination>
             </div>
+        </div>    
             
         
     );

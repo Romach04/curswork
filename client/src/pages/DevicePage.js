@@ -22,13 +22,13 @@ const DevicePage = () => {
     }
 
     return (
-        <Container className="mt-5 font-roboto bcf" style={{boxShadow:'0 4px 10px rgb(0 0 0 / 10%)'}}>
+        <Container className="mt-5 font-roboto bcf" style={{boxShadow:'0 4px 10px rgb(0 0 0 / 10%)', height: '700px' }}>
             <Row>
                 <Col md={4}>
                     <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}/>
                 </Col>
                 <Col md={4}>
-                    <Form className="d-flex flex-column aling-items-center">
+                    <Form className="d-flex align-items-center">
                         <h2>{device.name}</h2>
                         <div className="d-flex align-items-center justify-content-center"
                         style={{background: `url(${starBig}) no-repeat center center`,
@@ -43,7 +43,7 @@ const DevicePage = () => {
                 <Col md={4}>
                     <Card
                         className="d-flex flex-column align-items-center justify-content-around"
-                        style={{width: 300, height:300, fontSize: 30}}
+                        style={{width: 300, height:300, fontSize: 30, marginTop: '35px', borderRadius: '2px'}}
                     >  
                         <h3>{device.price} р.</h3>
                         <Button 
@@ -58,7 +58,7 @@ const DevicePage = () => {
                 <h1>Характеристки</h1>
                 {device.info.map((info, index) =>
                     <Row key={info.id} style={{background: index % 2 === 0 ? 'Lightgray' : 'transparent', 
-                    padding: 10}}>
+                    padding: 10, marginLeft: 1}}>
                         {info.title} : {info.description}
                     </Row>
                 )}

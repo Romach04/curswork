@@ -8,7 +8,7 @@ const BrandBar = observer(() => {
 
     const {devices} = useContext(Context)
     return (
-        <Form className='d-flex flex-wrap font-roboto' style={{fontFamily: 'Roboto', transition: 'all 0.25s ease-out'}}>
+        <Form className='d-flex flex-wrap font-roboto' style={{fontFamily: 'Roboto', marginTop: '14px'}}>
             {devices.brands.map(brand =>
                 <Card
                     style={{cursor: 'pointer', marginLeft:50, backgroundColor: 'rgb(255 246 246)'}}

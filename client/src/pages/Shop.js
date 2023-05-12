@@ -11,7 +11,6 @@ import Pages from "../components/Pages";
 import '../App.css'
 const Shop = observer(() => {
     const {devices} = useContext(Context)
-
     useEffect(() => {
         fechTypes().then(data => devices.setTypes(data))
         fechBrand().then(data =>devices.setBrands(data))
@@ -29,9 +28,9 @@ const Shop = observer(() => {
         })   
     }, [devices.page, devices.selectedType, devices.selectedBrand])
     return (
-        <Container className="bcf" style={{boxShadow:'4px 4px 10px rgb(0 0 0 / 10%)'}}>
+        <Container className="bcf" style={{boxShadow:'0px 10px 20px 2px rgb(0 0 0 / 10%)', height: '700px' }}>
             <Row className="mt-3">
-                <Col md={3}>
+                <Col md={3} style={{padding: '14px'}}>
                     <TypeBar/>
                 </Col>
                 <Col md={9}>
