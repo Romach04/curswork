@@ -7,8 +7,9 @@ const CreateBrand = ({show, onHide}) => {
   const addBrand = () => {
       createBrand({name: value}).then(data => {
           setValue('')
-          onHide()
-      })
+          
+      }).catch(e => alert(e.message))
+      .finally(onHide())
   }
     return (
         <Modal
