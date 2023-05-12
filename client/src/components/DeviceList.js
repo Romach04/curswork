@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { Context } from '../index';
 import {Form} from 'react-bootstrap';
 import DeviceItem from './DeviceItem';
-
 const DeviceList = observer(() => {
     const {devices} = useContext(Context)
     return (

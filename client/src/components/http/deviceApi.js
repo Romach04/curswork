@@ -25,6 +25,10 @@ export const createDevice = async (device) => {
     const {data} = await $authHost.post('api/device', device)
     return data
 }
+// export const deleteDevice = async (name) => {
+//     const {data} = await $authHost.post('api/device', name)
+//     return data
+// }
 
 export const fechDevice = async (typeId, brandId, page, limit = 5) => {
     const {data} = await $host.get('api/device', {params: {
@@ -57,8 +61,8 @@ export const addToBasket = async (deviceId) => {
 }
 
 export const deleteItemBasket = async (id) => {
-    const {response} = await $authHost.delete('api/basket', id)
-    return response
+    const {data} = await $authHost.delete('api/basket', id);
+    return data
 }
 
 export const getBasket = async () => {

@@ -72,6 +72,11 @@ class DeviceController {
         )
         return res.json(device)
     }
+    async deleteDevices (req, res) {
+        const {name} = req.body
+        const type = await Device.destroy({where : {name : name}})
+        return res.json(type)
+    }
 
 }
 

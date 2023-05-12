@@ -18,34 +18,35 @@ const Basket = observer(() => {
     }, [])
 
     // useEffect(() => {
-    //     async function deleteItem() {
-    //          deleteItemBasket(basketId)
+    //     async function deleteItem(id) {
+    //          deleteItemBasket({id})
     //         .then(data => devices.setBaskets(data)
-    //         .then(console.log('ok'))
     //         .catch((e) => {e.message()}))
     //     }
     //     if(basketId){
     //         console.log('pp')
-    //         deleteItem()
+    //         console.log(basketId)
+    //         deleteItem(basketId)
             
     //     }
         
     // }, [basketId])
 
 
-    // ----- Считаем общую сумму, которую юзер набрал в корзину ------- //
 
     let prices = 0;
     {devices.basket.map(price =>
         prices += Number(price.device.price)
     )}
 
-    const removeItem = (id) => {
+    const removeItem  =  (id) => {
+        //  deleteItemBasket(id).then(data => devices.setBaskets(data))
         const arr = devices.basket;
         removeObjectWithId(arr, id)
 
         
     }
+
 
      function removeObjectWithId(arr, id) {
         const objWithIdIndex = arr.findIndex((obj) => obj.id === id);

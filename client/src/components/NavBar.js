@@ -18,6 +18,7 @@ const NavBar = observer(() => {
     const logOut = () => {
         user.setIsAuth(false)
         user.setUser({})
+        localStorage.removeItem('token')
     }
     return (
     <Navbar style={{fontFamily:  'Roboto , sans-serif'}} bg="dark" variant="dark">
@@ -33,7 +34,8 @@ const NavBar = observer(() => {
                     onClick={() => navigate(ADMIN_ROUTER)}
                     >Админ меню
                     </Button>
-                    <Button 
+                    <Button
+                    id='but'
                     variant='danger'
                     style={{marginLeft:'20px'}}
                     onClick={() => logOut()}
