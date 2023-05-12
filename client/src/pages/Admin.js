@@ -9,14 +9,14 @@ const Admin = () => {
     const [deviceVis,  setDeviceVis] = useState(false)
     const [typeVis,  setTypeVis] = useState(false)
     return (
-        <Container className="d-flex flex-column">
-            <Button onClick={() => setBrandVis(true)} variant="outline-secondary" 
+        <Container className="d-flex flex-column ">
+            <Button onClick={() => setBrandVis(true)} variant="outline-success" 
             className="mt-2">Добавить бренд
             </Button>
-            <Button onClick={() => setDeviceVis(true)} variant="outline-secondary" 
+            <Button onClick={() => setDeviceVis(true)} variant="outline-success" 
             className="mt-2">Добавить device
             </Button>
-            <Button onClick={() => setTypeVis(true)} variant="outline-secondary" 
+            <Button onClick={() => setTypeVis(true)} variant="outline-success"
             className="mt-2">Добавить тип
             </Button>
             <CreateBrand show={brandVis} onHide={() => setBrandVis(false)}/>

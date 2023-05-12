@@ -65,7 +65,7 @@ const Basket = observer(() => {
 
     return (
         <Container
-            className="d-flex flex-sm-column justify-content-center align-items-center mt-3 font-roboto"
+            className="d-flex flex-sm-column justify-content-center align-items-center mt-3 font-roboto bcf"
         >
             <h1 className="pb-2 mt-5">Корзина</h1>
 

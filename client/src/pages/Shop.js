@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 import {Context} from '../index';
 import { fechBrand, fechTypes, fechDevice } from "../components/http/deviceApi";
 import Pages from "../components/Pages";
+import '../App.css'
 const Shop = observer(() => {
     const {devices} = useContext(Context)
 
@@ -28,7 +29,7 @@ const Shop = observer(() => {
         })   
     }, [devices.page, devices.selectedType, devices.selectedBrand])
     return (
-        <Container>
+        <Container className="bcf" style={{boxShadow:'4px 4px 10px rgb(0 0 0 / 10%)'}}>
             <Row className="mt-3">
                 <Col md={3}>
                     <TypeBar/>

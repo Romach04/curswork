@@ -22,7 +22,7 @@ const DevicePage = () => {
     }
 
     return (
-        <Container className="mt-5 font-roboto">
+        <Container className="mt-5 font-roboto bcf" style={{boxShadow:'0 4px 10px rgb(0 0 0 / 10%)'}}>
             <Row>
                 <Col md={4}>
                     <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}/>
