@@ -27,7 +27,6 @@ const Auth = observer(() => {
             }
             user.setUser(user)
             user.setIsAuth(true)
-            // localStorage.SetItem('token')
             navigate(SHOP_ROUTER)
 
         } catch(e) {
