@@ -16,7 +16,7 @@ export default class DeviceStore {
     }
 
     setBaskets(basket){
-        this._baskets = basket
+        this._baskets = [...basket]
     }
     setTypes(types) {
         this._types = types

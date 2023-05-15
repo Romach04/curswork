@@ -12,54 +12,39 @@ import '../App.css'
 const Basket = observer(() => {
     const [basketId, setBasketId] = useState(null);
     const {devices} = useContext(Context)
-
-    useEffect(() => {
-        getBasket().then(data => devices.setBaskets(data))
-    }, [])
-
-    // useEffect(() => {
-    //     async function deleteItem(id) {
-    //          deleteItemBasket({id})
-    //         .then(data => devices.setBaskets(data)
-    //         .catch((e) => {e.message()}))
-    //     }
-    //     if(basketId){
-    //         console.log('pp')
-    //         console.log(basketId)
-    //         deleteItem(basketId)
-            
-    //     }
-        
-    // }, [basketId])
-
-
-
     let prices = 0;
     {devices.basket.map(price =>
         prices += Number(price.device.price)
     )}
 
-    const removeItem  =  (id) => {
-        //  deleteItemBasket(id).then(data => devices.setBaskets(data))
-        const arr = devices.basket;
-        removeObjectWithId(arr, id)
+    
+    useEffect(() => {
+        getBasket().then(data => devices.setBaskets(data))
+    }, [])
 
-        
-    }
-
-
-     function removeObjectWithId(arr, id) {
-        const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
-      
-        if (objWithIdIndex > -1) {
-          arr.splice(objWithIdIndex, 1);
+    useEffect(() => {
+        if (basketId) {
+          deleteItem(basketId);
         }
-        
-        
-        return arr;
+      
+        async function deleteItem(id) {
+          try {
+            const data = await deleteItemBasket(id);
+            await getBasket().then(data => devices.setBaskets(data));
+            // devices.setBaskets(data);
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }, [basketId, prices]);
 
-        
-      }
+    const removeItem = (id) => {
+        setBasketId(id);
+    };
+
+    
+
+    
     
 
 
@@ -89,7 +74,7 @@ const Basket = observer(() => {
                         </Col>
                         <Col>
                             <div className='d-flex align-items-center justify-content-center' style={{height:'100%'}}>
-                                <Button variant='outline-danger' className='ms-5' onClick={()=>{removeItem(product.id)}} >Удалить товар</Button>
+                                <Button variant='outline-danger' className='ms-5' onClick={()=>{{removeItem(product.id)}}} >Удалить товар</Button>
                             </div>
                             
                         </Col>
@@ -122,7 +107,27 @@ export default Basket;
 
 
 
+// const removeItem  =  (id) => {
+        
+//     const arr = devices.basket;
+//     removeObjectWithId(arr, id)
 
+    
+// }
+
+
+//  function removeObjectWithId(arr, id) {
+//     const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
+  
+//     if (objWithIdIndex > -1) {
+//       arr.splice(objWithIdIndex, 1);
+//     }
+    
+    
+//     return arr;
+
+    
+//   }
 
 
 
