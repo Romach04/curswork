@@ -1,5 +1,4 @@
 const { Device, BasketDevice, Basket } = require("../models/models")
-var pg = require('pg');
 class BasketController {
 
     async addToBasket(req,res,next){

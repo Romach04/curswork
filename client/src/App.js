@@ -19,7 +19,7 @@ const App = observer( () => {
     }, [])
 
     if (loading) {
-        return <Spinner animation={"grow"}/>
+        return <Spinner   animation="border" style={{display:'flex', position:'absolute', margin: 'auto', left:0, right: 0}}/>
     }
   return (
     <BrowserRouter>

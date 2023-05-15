@@ -21,6 +21,18 @@ const DevicePage = () => {
         addToBasket(formData).then(response => alert(`Товар ` + device.name + ` был добавлен в вашу корзину!`))
     }
 
+    const sliceName = () =>{
+        let count = 0;
+        for (let key in device.name){
+            count++;
+        }
+        if( count > 8) {   
+            device.name = device.name.slice(0, 8) + '...';
+        }
+
+    }
+    sliceName();
+
     return (
         <Container className="mt-5 font-roboto bcf" style={{boxShadow:'0 4px 10px rgb(0 0 0 / 10%)', height: '700px' }}>
             <Row>
@@ -29,7 +41,13 @@ const DevicePage = () => {
                 </Col>
                 <Col md={4}>
                     <Form className="d-flex align-items-center">
-                        <h2>{device.name}</h2>
+                        <div className="d-flex align-items-center flex-column">
+                        {devices.brands.map(brand =>
+                            device.brandId === brand.id ? <h3>{brand.name}</h3> : ''
+                        )}
+                        <h3 className="ms-1">{device.name}</h3>
+                        </div>
+                        
                         <div className="d-flex align-items-center justify-content-center"
                         style={{background: `url(${starBig}) no-repeat center center`,
                         width:240, color:'white', fontSize: 40, height:240, backgroundSize: 'cover'}}
